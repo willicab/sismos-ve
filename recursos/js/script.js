@@ -65,7 +65,7 @@ var map = new OpenLayers.Map({
     zoom: 7
 });
 
-$.post( "http://localhost/sismos/", { ini: $('#ini').val(), fin: $('#fin').val(), min:$('#min').val(), max:$('#max').val()})
+$.post( baseUrl, { ini: $('#ini').val(), fin: $('#fin').val(), min:$('#min').val(), max:$('#max').val()})
 .done(function( data ) {
     geoData = data;
     refresh(data, $('#fechas').val().split(' hasta ')[0], $('#fechas').val().split(' hasta ')[1], Math.round10(slider.getInfo().left, -1), Math.round10(slider.getInfo().right, -1));
