@@ -1,0 +1,146 @@
+html {
+    height:100%;
+}
+body {
+    margin:0;
+    overflow:hidden;
+    height:100%;
+    font-family: 'Roboto', sans-serif;
+}
+h1 {
+    font-size:1.5rem;
+    padding:0;
+    margin:0;
+}
+p {
+    padding: 0;
+    margin: 0;
+    margin-top: 1rem;
+}
+a {
+    color: #0aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover {
+    color: #0ff;
+}
+input {
+    margin-bottom: 1rem;
+}
+#caja {
+    position:absolute;
+    top:0.5rem;
+    right:0.5rem;
+    background-color:rgba(0,0,0,0.7);
+    padding:1rem;
+    z-index:1001;
+    text-align:center;
+    font-weight:bold;
+    color:#fff;
+    border-radius: 0.5rem;
+}
+#acerca {
+    text-align: right;
+    color: #0aa;
+    font-size: 0.7rem;
+}
+#acerca:hover {
+    color: #0ff;
+    cursor: pointer;
+}
+#map {
+    width:100%;
+    height:100%;
+}
+#fechas {
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    border-width: 0;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#about-back {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1003;
+    color: #fff;
+    text-align: center;
+}
+
+#about-dialog {
+    width: 480px;
+    margin: 60px auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.slider {
+    width: 100%;
+    height: 0.4rem;
+    background-color: rgba(0,0,0,0.5);
+    position: relative;
+    margin-top: 0.5rem;
+}
+.slider.one-way .handle.handle-left {
+    visibility: hidden;
+}
+.slider .slider-circle {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.5);
+    position: relative;
+    display: inline-block;
+    margin-top: 0rem;
+    pointer-events: none;
+    -webkit-user-select: none;
+}
+.slider .handle {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 2.6rem;
+    position: absolute;
+    top: -0.6rem;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+}
+.slider .handle.ontop {
+    z-index: 2;
+}
+.slider .handle:active {
+    border-color: #0a84c1;
+    box-shadow: 0 0 0.5rem #0a84c1;
+}
+.slider .handle-left {
+    left: 0;
+}
+.slider .handle-right {
+    right: 0;
+}
+.slider .slider-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.5);
+    pointer-events: none;
+    -webkit-user-select: none;
+}
+.slider .slider-transition {
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
