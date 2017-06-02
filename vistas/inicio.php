@@ -50,75 +50,13 @@
                 <a href="https://github.com/longbill/jquery-date-range-picker" target="_blank">jquery-date-range-picker 0.14.4</a><br>
             </div>
         </div>
+        <script>baseUrl = "<?= Flight::get('flight.base_url') ?>";</script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/jquery-3.1.1.min.js"></script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/moment.min.js"></script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/omni-slider.js"></script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/jquery.daterangepicker.min.js"></script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/OpenLayers.js"></script>
         <script src="<?= Flight::get('flight.base_url') ?>recursos/js/utils.js"></script>
-        <script>
-        baseUrl = "<?= Flight::get('flight.base_url') ?>";
-        var m20 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/2.0.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m25 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/2.5.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m30 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/3.0.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m35 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/3.5.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m40 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/4.0.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m45 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/4.5.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m50 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/5.0.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m55 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/5.5.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m60 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/6.0.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-        var m65 = new OpenLayers.Layer.Vector('Overlay', {
-            styleMap: new OpenLayers.StyleMap({
-                externalGraphic: baseUrl+'recursos/img/6.5.png',
-                graphicWidth: 24, graphicHeight: 24, graphicYOffset: -24
-            })
-        });
-    </script>
-    <script src="<?= Flight::get('flight.base_url') ?>recursos/js/script.js"></script>
-</body>
+        <script src="<?= Flight::get('flight.base_url') ?>recursos/js/script.js"></script>
+    </body>
 </html>

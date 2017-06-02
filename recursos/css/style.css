@@ -64,6 +64,38 @@ input {
     width:100%;
     height:100%;
 }
+.olControlAttribution {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 0.5rem;
+}
+.olControlZoom {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+}
+.olButton {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 0.3rem;
+    font-size: 1.3rem;
+    padding: 0.3rem;
+    display: block;
+    margin: 0.2rem;
+}
+.olPopup {
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: #fff;
+    border-radius: 0.5rem;
+}
+#pop_FrameDecorationImg_0, #pop_FrameDecorationDiv_0, #pop_FrameDecorationDiv_1, #pop_FrameDecorationDiv_2, #pop_FrameDecorationDiv_3, #pop_FrameDecorationDiv_4 {
+    display: none;
+}
 #fechas {
     width: 100%;
     background-color: rgba(0,0,0,0.5);

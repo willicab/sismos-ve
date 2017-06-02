@@ -56,14 +56,46 @@ $('.handle').mouseup(function(){
     Mostrar el mapa
 *********/
 
+var feat = new OpenLayers.Layer.Vector('Overlay');
+
 var map = new OpenLayers.Map({
     div: "map",
-    layers: [new OpenLayers.Layer.OSM(), m20, m25, m30, m35, m40, m45, m50, m55, m60, m65],
+    layers: [new OpenLayers.Layer.OSM(), feat],
     target: 'map',
     projection: "EPSG:3857",
     center: myLocation.getBounds().getCenterLonLat(),
     zoom: 7
 });
+
+//Add a selector control to the vectorLayer with popup functions
+var controls = {
+    feat: new OpenLayers.Control.SelectFeature(feat, { onSelect: createPopup, onUnselect: destroyPopup })
+};
+
+function createPopup(feature) {
+    feature.popup = new OpenLayers.Popup("pop",
+        feature.geometry.getBounds().getCenterLonLat(),
+        new OpenLayers.Size(300,110),
+        '<div class="markerContent">'+feature.attributes.description+'</div>',
+        null,
+        false,
+        function() {
+            controls['feat'].unselectAll();
+        }
+    );
+
+    feature.popup.closeOnMove = true;
+    map.addPopup(feature.popup);
+}
+
+function destroyPopup(feature) {
+    console.log(feature);
+    feature.popup.destroy();
+    feature.popup = null;
+}
+
+map.addControl(controls['feat']);
+controls['feat'].activate();
 
 $.post( baseUrl, { ini: $('#ini').val(), fin: $('#fin').val(), min:$('#min').val(), max:$('#max').val()})
 .done(function( data ) {
@@ -75,22 +107,14 @@ function refresh(data, ini, fin, min, max) {
     var count = 0;
     if (data == undefined) return;
     $('#cuenta').text('Buscando eventos sísmicos')
-    m20.destroyFeatures();
-    m25.destroyFeatures();
-    m30.destroyFeatures();
-    m35.destroyFeatures();
-    m40.destroyFeatures();
-    m45.destroyFeatures();
-    m50.destroyFeatures();
-    m55.destroyFeatures();
-    m60.destroyFeatures();
-    m65.destroyFeatures();
+    feat.destroyFeatures();
+    console.log(controls['feat'].popup);
     for (i=0; i< data.data.length; i++) {
         fec = data.data[i].fecha;
         lon = data.data[i].longitud;
         lat = data.data[i].latitud;
-        ubi = data.data[i].ubicacion;
         mag = data.data[i].magnitud;
+        ubi = data.data[i].ubicacion;
 
         var t = fec.split(/[- :]/);
         var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
@@ -103,17 +127,19 @@ function refresh(data, ini, fin, min, max) {
         if(mag<=min) continue;
         if(mag>=max) continue;
         count++;
-        var feature = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lon, lat).transform('EPSG:4326', 'EPSG:3857'), {tooltip: ubi});
-        if (mag < 2.5) m20.addFeatures(feature);
-        if (mag >= 2.5 && mag < 3.0) m25.addFeatures(feature);
-        if (mag >= 3.0 && mag < 3.5) m30.addFeatures(feature);
-        if (mag >= 3.5 && mag < 4.0) m35.addFeatures(feature);
-        if (mag >= 4.0 && mag < 4.5) m40.addFeatures(feature);
-        if (mag >= 4.5 && mag < 5.0) m45.addFeatures(feature);
-        if (mag >= 5.0 && mag < 5.5) m50.addFeatures(feature);
-        if (mag >= 5.5 && mag < 6.0) m55.addFeatures(feature);
-        if (mag >= 6.0 && mag < 6.5) m60.addFeatures(feature);
-        if (mag >= 6.5) m65.addFeatures(feature);
+        var imgMarker;
+        if (mag >= 2 && mag <= 2.4) imgMarker = '2.0';
+        if (mag >= 2.5 && mag <= 2.9) imgMarker = '2.5';
+        if (mag >= 3 && mag <= 3.4) imgMarker = '3.0';
+        if (mag >= 3.5 && mag <= 3.9) imgMarker = '3.5';
+        if (mag >= 4 && mag <= 4.4) imgMarker = '4.0';
+        if (mag >= 4.5 && mag <= 4.9) imgMarker = '4.5';
+        if (mag >= 5 && mag <= 5.4) imgMarker = '5.0';
+        if (mag >= 5.5 && mag <= 5.9) imgMarker = '5.5';
+        if (mag >= 6 && mag <= 6.4) imgMarker = '6.0';
+        if (mag >= 6.5) imgMarker = '65';
+        var feature = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(lon, lat).transform('EPSG:4326', 'EPSG:3857'), {description:'<strong>Fecha: '+fec+'<br>Longitud: '+lon+'<br>Latitud: '+lat+'<br>Magnitud: '+mag+'<br>Ubicación: '+ubi+'</strong>'}, {externalGraphic: 'recursos/img/'+imgMarker+'.png', graphicHeight: 24, graphicWidth: 24, graphicXOffset:-12, graphicYOffset:-12  });
+        feat.addFeatures(feature);
         $('#cuenta').text(count+' eventos sísmicos')
     }
 }

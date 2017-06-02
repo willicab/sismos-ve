@@ -29,7 +29,7 @@ Flight::route('POST /', function(){
 
 Flight::route('GET /refresh', function(){
     $db = Flight::db();
-    for ($i=2008; $i<=2017; $i++) {
+    for ($i=2017; $i<=2017; $i++) {
         $count = 0;
         $url = "http://www.funvisis.gob.ve/sis_mes.php";
         $params=[
