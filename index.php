@@ -20,7 +20,7 @@ Flight::route('POST /', function(){
     $fin = empty(Flight::request()->data->fin) ? "1=1" : "fecha<='".Flight::request()->data->fin."'";
     $min = empty(Flight::request()->data->min) ? "1=1" : "magnitud>=".Flight::request()->data->min;
     $max = empty(Flight::request()->data->max) ? "1=1" : "magnitud<=".Flight::request()->data->max;
-    $sql = "SELECT * FROM historico WHERE $ini AND $fin AND $min AND $max";
+    $sql = "SELECT * FROM historico WHERE $ini AND $fin AND $min AND $max order by fecha";
     $gsent = $db->prepare($sql);
     $gsent->execute();
     $resultado = $gsent->fetchAll(PDO::FETCH_ASSOC);
